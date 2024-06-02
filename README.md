@@ -1,4 +1,4 @@
-# NIM_1D_hyperelasticity_JAX
+# NIM_Tutorial
 
 ## Overview
 A differentiable programming neural integrated meshfree solver based on the JAX framework, designed for both forward and inverse modeling of inelastic materials. This repository supports the accompanying paper with both data and code.
