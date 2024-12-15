@@ -6,10 +6,7 @@ from jax import random, vmap, grad, jit
 
 # from torch.utils import data
 import matplotlib.pyplot as plt
-# import numpy as np
-# import scipy.io as scio
-# import h5py
-# import time
+
 import os, sys
 
 import time

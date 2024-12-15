@@ -108,7 +108,7 @@ class NIM_time_dependent_data:
         self.epsilon = epsilon
         self.max_v = max_v
 
-    def operator_net_vmap(self, params, u, T, index=slice(None)):
+    def Neuro_pu(self, params, u, T, index=slice(None)):
         # Compute the output of the operator network
         B = self.dis_apply(params, u).squeeze()
         B = B[index]
@@ -117,26 +117,26 @@ class NIM_time_dependent_data:
 
     def residual_net(self, params_c, coe_pa, u):
         # PDE residual: c_t + V c_x - epsilon c_xx = 0
-        c_x = self.operator_net_vmap(params_c, u, self.DPHIX_all, self.index_all)
+        c_x = self.Neuro_pu(params_c, u, self.DPHIX_all, self.index_all)
 
-        c_t = vmap(grad(self.operator_net_vmap, argnums=1), in_axes=(None, None, 0, 0))(params_c, u, self.PHI_all, self.index_all)
+        c_t = vmap(grad(self.Neuro_pu, argnums=1), in_axes=(None, None, 0, 0))(params_c, u, self.PHI_all, self.index_all)
         c_t = c_t.squeeze()
 
-        c_xx = self.operator_net_vmap(params_c, u, self.DPHIXX_all, self.index_all)
+        c_xx = self.Neuro_pu(params_c, u, self.DPHIXX_all, self.index_all)
 
         res_c = c_t + self.V * c_x - coe_pa * c_xx
         return res_c.squeeze()
 
     def loss_bcs_c(self, params_c, t_select):
         # Boundary conditions loss
-        c_pred0 = vmap(self.operator_net_vmap, (None, 0, None, None))(params_c, t_select, self.PHI_bc[0], self.index_bc[0])
-        c_pred1 = vmap(self.operator_net_vmap, (None, 0, None, None))(params_c, t_select, self.PHI_bc[1], self.index_bc[1])
+        c_pred0 = vmap(self.Neuro_pu, (None, 0, None, None))(params_c, t_select, self.PHI_bc[0], self.index_bc[0])
+        c_pred1 = vmap(self.Neuro_pu, (None, 0, None, None))(params_c, t_select, self.PHI_bc[1], self.index_bc[1])
         loss_1 = np.mean(c_pred0**2) + np.mean(c_pred1**2)
         return loss_1
 
     def loss_ics(self, params_c, t_select):
         # Initial condition loss
-        c_pred = self.operator_net_vmap(params_c, t_select, self.PHI_all, self.index_all)
+        c_pred = self.Neuro_pu(params_c, t_select, self.PHI_all, self.index_all)
         loss_c = np.mean((c_pred.reshape(-1, 1) - self.c_ext0)**2)
         return loss_c
 
@@ -147,7 +147,7 @@ class NIM_time_dependent_data:
         return loss_c
     def loss_data(self, params_c):
 
-        c_pred = vmap(self.operator_net_vmap, (None, 0, 0, 0))(params_c, self.t_data, self.PHI_data, self.index_data)
+        c_pred = vmap(self.Neuro_pu, (None, 0, 0, 0))(params_c, self.t_data, self.PHI_data, self.index_data)
         # Compute loss
         loss_c = np.mean((c_pred.reshape(-1,1) - self.c_data)**2)
         return loss_c
@@ -173,7 +173,7 @@ class NIM_time_dependent_data:
             loss_bcs_c_value = self.loss_bcs_c(params_c, self.t_seires)
             loss_data_value = self.loss_data(params_c)
             loss_res_c_value = self.loss_res(params_c, coe_pa, self.t_seires)
-            c_pred = vmap(self.operator_net_vmap, (None, 0, None, None))(params_c, self.ttest, self.PHI_test, self.index_test)
+            c_pred = vmap(self.Neuro_pu, (None, 0, None, None))(params_c, self.ttest, self.PHI_test, self.index_test)
             l2 = np.linalg.norm(self.c_test.reshape(-1, self.xtest.shape[0]) - c_pred, 2) / np.linalg.norm(self.c_test)
             # Store losses
             
@@ -221,7 +221,7 @@ class NIM_time_dependent_data:
                     loss_bcs_c_value = self.loss_bcs_c(params_c, self.t_seires)
                     loss_data_value = self.loss_data(params_c)
                     loss_res_c_value = self.loss_res(params_c, coe_pa, self.t_seires)
-                    c_pred = vmap(self.operator_net_vmap, (None, 0, None, None))(params_c, self.ttest, self.PHI_test, self.index_test)
+                    c_pred = vmap(self.Neuro_pu, (None, 0, None, None))(params_c, self.ttest, self.PHI_test, self.index_test)
                     l2 = np.linalg.norm(self.c_test.reshape(-1, self.xtest.shape[0]) - c_pred, 2) / np.linalg.norm(self.c_test,2)
                     # Store losses
                     self.loss_log.append(loss_value)
@@ -253,7 +253,7 @@ class NIM_time_dependent_data:
 
     @partial(jit, static_argnums=(0,))
     def predict_s(self, params, t_s):
-        c_pred = vmap(self.operator_net_vmap, (None, 0, None, None))(params, t_s, self.PHI_test, self.index_test)
+        c_pred = vmap(self.Neuro_pu, (None, 0, None, None))(params, t_s, self.PHI_test, self.index_test)
         return c_pred
 
 class NIM_time_dependent:
@@ -326,7 +326,7 @@ class NIM_time_dependent:
         self.epsilon = epsilon
         self.max_v = max_v
 
-    def operator_net_vmap(self, params, u, T, index=slice(None)):
+    def Neuro_pu(self, params, u, T, index=slice(None)):
         # Compute the output of the operator network
         B = self.dis_apply(params, u).squeeze()
         B = B[index]
@@ -335,26 +335,26 @@ class NIM_time_dependent:
 
     def residual_net(self, params_c, u):
         # PDE residual: c_t + V c_x - epsilon c_xx = 0
-        c_x = self.operator_net_vmap(params_c, u, self.DPHIX_all, self.index_all)
+        c_x = self.Neuro_pu(params_c, u, self.DPHIX_all, self.index_all)
 
-        c_t = vmap(grad(self.operator_net_vmap, argnums=1), in_axes=(None, None, 0, 0))(params_c, u, self.PHI_all, self.index_all)
+        c_t = vmap(grad(self.Neuro_pu, argnums=1), in_axes=(None, None, 0, 0))(params_c, u, self.PHI_all, self.index_all)
         c_t = c_t.squeeze()
 
-        c_xx = self.operator_net_vmap(params_c, u, self.DPHIXX_all, self.index_all)
+        c_xx = self.Neuro_pu(params_c, u, self.DPHIXX_all, self.index_all)
 
         res_c = c_t + self.V * c_x - self.epsilon * c_xx
         return res_c.squeeze()
 
     def loss_bcs_c(self, params_c, t_select):
         # Boundary conditions loss
-        c_pred0 = vmap(self.operator_net_vmap, (None, 0, None, None))(params_c, t_select, self.PHI_bc[0], self.index_bc[0])
-        c_pred1 = vmap(self.operator_net_vmap, (None, 0, None, None))(params_c, t_select, self.PHI_bc[1], self.index_bc[1])
+        c_pred0 = vmap(self.Neuro_pu, (None, 0, None, None))(params_c, t_select, self.PHI_bc[0], self.index_bc[0])
+        c_pred1 = vmap(self.Neuro_pu, (None, 0, None, None))(params_c, t_select, self.PHI_bc[1], self.index_bc[1])
         loss_1 = np.mean(c_pred0**2) + np.mean(c_pred1**2)
         return loss_1
 
     def loss_ics(self, params_c, t_select):
         # Initial condition loss
-        c_pred = self.operator_net_vmap(params_c, t_select, self.PHI_all, self.index_all)
+        c_pred = self.Neuro_pu(params_c, t_select, self.PHI_all, self.index_all)
         loss_c = np.mean((c_pred.reshape(-1, 1) - self.c_ext0)**2)
         return loss_c
 
@@ -381,7 +381,7 @@ class NIM_time_dependent:
             loss_ics_c_value = self.loss_ics(params, np.array([self.lb[1]]))
             loss_bcs_c_value = self.loss_bcs_c(params, self.t_seires)
             loss_res_c_value = self.loss_res(params, self.t_seires)
-            c_pred = vmap(self.operator_net_vmap, (None, 0, None, None))(params, self.ttest, self.PHI_test, self.index_test)
+            c_pred = vmap(self.Neuro_pu, (None, 0, None, None))(params, self.ttest, self.PHI_test, self.index_test)
             l2 = np.linalg.norm(self.c_test.reshape(-1, self.xtest.shape[0]) - c_pred, 2) / np.linalg.norm(self.c_test)
             # Store losses
             
@@ -425,7 +425,7 @@ class NIM_time_dependent:
                     loss_ics_c_value = self.loss_ics(params_c, np.array([self.lb[1]]))
                     loss_bcs_c_value = self.loss_bcs_c(params_c, self.t_seires)
                     loss_res_c_value = self.loss_res(params_c, self.t_seires)
-                    c_pred = vmap(self.operator_net_vmap, (None, 0, None, None))(params_c, self.ttest, self.PHI_test, self.index_test)
+                    c_pred = vmap(self.Neuro_pu, (None, 0, None, None))(params_c, self.ttest, self.PHI_test, self.index_test)
                     l2 = np.linalg.norm(self.c_test.reshape(-1, self.xtest.shape[0]) - c_pred, 2) / np.linalg.norm(self.c_test,2)
                     # Store losses
                     self.loss_log.append(loss_value)
@@ -455,5 +455,5 @@ class NIM_time_dependent:
 
     @partial(jit, static_argnums=(0,))
     def predict_s(self, params, t_s):
-        c_pred = vmap(self.operator_net_vmap, (None, 0, None, None))(params, t_s, self.PHI_test, self.index_test)
+        c_pred = vmap(self.Neuro_pu, (None, 0, None, None))(params, t_s, self.PHI_test, self.index_test)
         return c_pred
