@@ -109,7 +109,6 @@ class NIM_time_dependent_data:
         self.max_v = max_v
 
     def Neuro_pu(self, params, u, T, index=slice(None)):
-        # Compute the output of the operator network
         B = self.dis_apply(params, u).squeeze()
         B = B[index]
         outputs = (T * B).reshape(-1,self.max_v).sum(axis = 1).squeeze()
@@ -327,7 +326,6 @@ class NIM_time_dependent:
         self.max_v = max_v
 
     def Neuro_pu(self, params, u, T, index=slice(None)):
-        # Compute the output of the operator network
         B = self.dis_apply(params, u).squeeze()
         B = B[index]
         outputs = (T * B).reshape(-1,self.max_v).sum(axis = 1).squeeze()
