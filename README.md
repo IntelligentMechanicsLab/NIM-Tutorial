@@ -1,4 +1,4 @@
-# Neural-Integrated Meshfree (NIM) Method: A differentiable programming-based hybrid solver for computational mechanics | CMAME
+# Neural-Integrated Meshfree (NIM) Method: A differentiable programming-based hybrid solver | CMAME, EWC
 
 ### [Paper1](https://www.sciencedirect.com/science/article/pii/S0045782524002809), [Paper2](https://arxiv.org/abs/2407.11183)
 
@@ -6,7 +6,7 @@ Honghui Du, QiZhi He, Binyao Guo<br>
 University of Minnesota<br>
 
 ![NIM](docs/architecture.png)
-![example](docs/result_exampl.png)
+![example](docs/result_example.png)
 ## Overview
 A differentiable programming neural integrated meshfree (A.k.a. Differentiable Meshfree) solver based on the JAX framework, designed for both forward and inverse modeling of inelastic materials. This repository supports the accompanying paper with both data and code.
 ## Requirements
