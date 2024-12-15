@@ -31,13 +31,13 @@ Explore the 1D Hyperelasticity model using the V-NIM method provided below:
 
 - **[Code for NIM/h](1D_hyperelasticity/NIM-H_1D_hyperelasticity_Tutorial.ipynb)**
 
-## Forward modeling of advection diffusion equation (ADE) using S-NIM
+### Forward modeling of advection diffusion equation (ADE) using S-NIM
 
-- **(Advection_diffusion_equation_forward/JAX_SNIM_ADE_forward)**
+- **(Advection_diffusion_equation_forward/JAX_SNIM_ADE_forward.py)**
 
-## Inverse parameter identification of advection diffusion equation (ADE) using S-NIM
+### Inverse parameter identification of advection diffusion equation (ADE) using S-NIM
 
-- **(Advection_diffusion_equation_inverse/JAX_SNIM_ADE_inverse)**
+- **(Advection_diffusion_equation_inverse/JAX_SNIM_ADE_inverse.py)**
 
 More examples demonstrating the application of the NIM method including (operator learning, elastoplasticity modeling) will be released soon. Stay tuned for updates.
 
