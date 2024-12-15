@@ -34,6 +34,7 @@ Explore the 1D Hyperelasticity model using the V-NIM method provided below:
 ### Forward and inverse modeling for time dependent proglem (advection diffusion equation) using S-NIM
 
 - **[Forward modeling](Advection_diffusion_equation_forward/JAX_SNIM_ADE_forward.py)**
+![Pig 1](Results\ADE_forward\81_81\loos_plot.png) ![Pig 2](Results\ADE_forward\81_81\exact_t_all_t.png) ![Pig 2](Results\ADE_forward\81_81\prediction_t_all_t.png)
 
 - **[Inverse modeling](Advection_diffusion_equation_inverse/JAX_SNIM_ADE_inverse.py)**
 
