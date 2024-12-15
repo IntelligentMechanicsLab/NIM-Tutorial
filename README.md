@@ -5,7 +5,7 @@ Neural integrated meshfree (NIM) solver is a GPU-accelerated differentiable mesh
 
 ### [Paper1](https://www.sciencedirect.com/science/article/pii/S0045782524002809), [Paper2](https://arxiv.org/abs/2407.11183)
 
-Research Team: Honghui Du (Graduate student), Binyao Guo (Graduate student), QiZhi He (PI)<br>
+Research Team: Honghui Du (Graduate student), QiZhi He (PI), Binyao Guo (Graduate student)<br>
 University of Minnesota<br>
 
 ![NIM](docs/architecture.png)
