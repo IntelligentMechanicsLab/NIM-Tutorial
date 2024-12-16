@@ -29,7 +29,7 @@ Explore the 1D Hyperelasticity model using the V-NIM method provided below:
 
 - **[Code for NIM/h](1D_hyperelasticity/NIM-H_1D_hyperelasticity_Tutorial.ipynb)**
 
-### Forward and inverse modeling for time dependent problem (advection diffusion equation) using S-NIM
+### Forward modeling for time dependent problem (advection diffusion equation) using S-NIM
 
 - **[Forward modeling](Advection_diffusion_equation_forward/JAX_SNIM_ADE_forward.py)**
 ![forwad](docs/forward.png)
