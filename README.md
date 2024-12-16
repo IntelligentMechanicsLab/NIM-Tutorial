@@ -34,12 +34,9 @@ Explore the 1D Hyperelasticity model using the V-NIM method provided below:
 - **[Forward modeling](Advection_diffusion_equation_forward/JAX_SNIM_ADE_forward.py)**
 ![forwad](docs/forward.png)
 
-<<<<<<< HEAD
-More examples demonstrating the application of the NIM method, including operator learning, inverse identification, elastoplasticity modeling, and geophysical simulation under extreme loading, will be released soon. Stay tuned for updates!
+
+##  More examples demonstrating the application of the NIM method, including operator learning, inverse identification, elastoplasticity modeling, and geophysical simulation under extreme loading, will be released soon. Stay tuned for updates!
 =======
-- **[Inverse modeling](Advection_diffusion_equation_inverse/JAX_SNIM_ADE_inverse.py)**
-![forwad](docs/inverse.png)
->>>>>>> eee341f79869a4b36a483c645913a76b2cc9bc02
 
 More examples demonstrating the application of the NIM method, including inverse modeling and operator learning, elastoplasticity modeling, and geophysical simulations, will be released soon. Stay tuned for updates!
 
