@@ -1,12 +1,9 @@
 # Neural-Integrated Meshfree (NIM) Method: A differentiable programming-based hybrid solver
 
-## Overview
-Neural integrated meshfree (NIM) solver is a GPU-accelerated differentiable meshfree analysis tool built on [JAX](https://github.com/jax-ml/jax). It is specifically designed for forward and inverse modeling of elastic and inelastic materials using particle-based simulations. This repository provides the data and code supporting the accompanying paper.
-
 ### [Paper1](https://www.sciencedirect.com/science/article/pii/S0045782524002809), [Paper2](https://arxiv.org/abs/2407.11183)
 
-Research Team: Honghui Du (Graduate student), QiZhi He (PI), Binyao Guo (Graduate student)<br>
-University of Minnesota<br>
+## Overview
+Neural integrated meshfree (NIM) solver is a GPU-accelerated differentiable meshfree analysis tool built on [JAX](https://github.com/jax-ml/jax). It is specifically designed for forward and inverse modeling of elastic and inelastic materials using particle-based simulations. This repository provides the data and code supporting the accompanying paper.
 
 ![NIM](docs/architecture.png)
 ![example](docs/result_example.png)
@@ -32,13 +29,22 @@ Explore the 1D Hyperelasticity model using the V-NIM method provided below:
 
 - **[Code for NIM/h](1D_hyperelasticity/NIM-H_1D_hyperelasticity_Tutorial.ipynb)**
 
-### Forward and inverse modeling for time dependent proglem (advection diffusion equation) using S-NIM
+### Forward and inverse modeling for time dependent problem (advection diffusion equation) using S-NIM
 
 - **[Forward modeling](Advection_diffusion_equation_forward/JAX_SNIM_ADE_forward.py)**
 ![forwad](docs/forward.png)
 
+<<<<<<< HEAD
 More examples demonstrating the application of the NIM method, including operator learning, inverse identification, elastoplasticity modeling, and geophysical simulation under extreme loading, will be released soon. Stay tuned for updates!
+=======
+- **[Inverse modeling](Advection_diffusion_equation_inverse/JAX_SNIM_ADE_inverse.py)**
+![forwad](docs/inverse.png)
+>>>>>>> eee341f79869a4b36a483c645913a76b2cc9bc02
 
+More examples demonstrating the application of the NIM method, including inverse modeling and operator learning, elastoplasticity modeling, and geophysical simulations, will be released soon. Stay tuned for updates!
+
+## Acknowledgements
+Contributors: Honghui Du (Graduate student), QiZhi He (PI), Binyao Guo (Graduate student)<br>
 
 ## Citation
 
