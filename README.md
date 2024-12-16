@@ -39,7 +39,7 @@ Explore the 1D Hyperelasticity model using the V-NIM method provided below:
 
 
 ## Acknowledgements
-Contributors: Honghui Du (Graduate student), QiZhi He (PI), Binyao Guo (Graduate student)<br>
+Contributors: Honghui Du (Graduate student), QiZhi He (PI)<br>
 
 ## Citation
 
