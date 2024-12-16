@@ -1,12 +1,9 @@
+### [Paper1](https://www.sciencedirect.com/science/article/pii/S0045782524002809), [Paper2](https://arxiv.org/abs/2407.11183)
+
 # Neural-Integrated Meshfree (NIM) Method: A differentiable programming-based hybrid solver
 
 ## Overview
 Neural integrated meshfree (NIM) solver is a GPU-accelerated differentiable meshfree analysis tool built on [JAX](https://github.com/jax-ml/jax). It is specifically designed for forward and inverse modeling of elastic and inelastic materials using particle-based simulations. This repository provides the data and code supporting the accompanying paper.
-
-### [Paper1](https://www.sciencedirect.com/science/article/pii/S0045782524002809), [Paper2](https://arxiv.org/abs/2407.11183)
-
-Research Team: Honghui Du (Graduate student), QiZhi He (PI), Binyao Guo (Graduate student)<br>
-University of Minnesota<br>
 
 ![NIM](docs/architecture.png)
 ![example](docs/result_example.png)
@@ -42,6 +39,8 @@ Explore the 1D Hyperelasticity model using the V-NIM method provided below:
 
 More examples demonstrating the application of the NIM method, including operator learning, elastoplasticity modeling, and geophysical simulation, will be released soon. Stay tuned for updates!
 
+## Acknowledgements
+Contributors: Honghui Du (Graduate student), QiZhi He (PI), Binyao Guo (Graduate student)<br>
 
 ## Citation
 
